@@ -9,5 +9,11 @@
             "email": "kapil@kapilsharma.info"
         }
     ],
+    "autoload": {
+        "psr-4": {"EE\\": "src"}
+    },
+    "autoload-dev": {
+        "psr-4": {"EE\\": "tests"}
+    },
     "require": {}
 }

@@ -1,28 +1,36 @@
 <?PHP
+include('vendor/autoload.php');
+
+use \EE\OperationFactory;
+
+// Get command line arguments.
 $fileName = array_shift($argv);
 $operation = array_shift($argv);
 $numbers = array_shift($argv);
 
+// Validate command line arguments.
 if (empty($operation)) {
     echo "Operation not defined. Usage: php calculator.php operation numbers";
     exit();
 }
-
 if (empty($numbers)) {
     echo "Numbers not defined. Usage: php calculator.php operation numbers";
     exit();
 }
 
+// Make number array of numbers string
 $numberArray = explode(',', $numbers);
 
-foreach($numberArray as $number) {
-    if (!is_numeric($number)) {
-        echo "Numbers must be numeric.";
-        exit;
-    }
-}
+// Execute operation
+try {
+    /**
+     * @var \EE\operations\OperationInterface
+     */
+    $operation = OperationFactory::getOperation($operation);
 
-if ($operation == "add") {
-    echo 'Sum of ' . $numbers . ' is ' . array_sum($numberArray) . PHP_EOL;
-    echo "Sum of $numbers is " . array_sum($numberArray);
+    $result = $operation->execute($numberArray);
+
+    echo 'Result is ' . $result;
+} catch(\EE\Exceptions\OperationNotFoundException $exception) {
+    echo $exception->getMessage();
 }
