@@ -15,5 +15,8 @@
     "autoload-dev": {
         "psr-4": {"EE\\": "tests"}
     },
-    "require": {}
+    "require": {},
+    "require-dev": {
+        "squizlabs/php_codesniffer": "*"
+    }
 }

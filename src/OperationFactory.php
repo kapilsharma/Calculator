@@ -17,7 +17,8 @@ class OperationFactory
      * @return OperationInterface
      * @throws OperationNotFoundException
      */
-    public static function getOperation(string $operation): OperationInterface {
+    public static function getOperation(string $operation): OperationInterface \
+    {
         switch ($operation) {
             case 'add':
             case 'addition':

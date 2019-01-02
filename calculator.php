@@ -31,6 +31,6 @@ try {
     $result = $operation->execute($numberArray);
 
     echo 'Result is ' . $result;
-} catch(\EE\Exceptions\OperationNotFoundException $exception) {
+} catch (\EE\Exceptions\OperationNotFoundException $exception) {
     echo $exception->getMessage();
 }
